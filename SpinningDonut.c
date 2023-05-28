@@ -14,7 +14,7 @@ int K2                  = 5;
 float z_buffer[TOTAL_PIXELS];
 char illumination[TOTAL_PIXELS];
 
-/*The pixels plotted using the values above are
+/*The pixels plotted using the values above in the illumination array are
 meant to demonstrate illumination. It starts with the dimmest
 and ends with the highest.*/
 int main(){
@@ -38,12 +38,12 @@ int main(){
                 float cosomega = cos(omega);
                 float sinphi = sin(phi);
                 float cosphi = cos(phi);
-                /*Pre-calculation to speed up*/
+                
                 float calc1 = offset_from_y_axis + radius_of_circle*cosomega;
                 /*3D coordinates*/
                 float xprime = calc1*(cosB*cosphi + sinA*sinB*sinphi) - radius_of_circle*cosA*sinB*sinomega;
                 float yprime = calc1*(cosphi*sinB - cosB*sinA*sinphi) + radius_of_circle*cosA*cosB*sinomega;
-                /*Speed advantage of computing inverse of z coordinate*/
+                
                 float inverse_zprime = 1/(calc1*cosA*sinphi + radius_of_circle*sinA*sinomega + K2);
                 /*2D coordinates*/
                 int x = 40 + 30*xprime*inverse_zprime;
